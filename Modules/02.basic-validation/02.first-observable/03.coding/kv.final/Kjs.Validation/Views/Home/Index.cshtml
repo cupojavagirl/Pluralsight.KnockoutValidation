@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Validating your First Observable";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper" style="height: 25px; padding-top: 15px; padding-bottom: 15px;">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@section scripts
+{
+    <script src="~/ViewModels/IndexViewModel.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var vm = new Ksj.Validation.IndexViewModel();
+            var dom = $('#demoArea')[0];
+
+            ko.applyBindingsWithValidation(vm, dom);
+
+        })();
+    </script>
+}
+
+<div id="demoArea">
+    <div>
+        <input type="text" data-bind="value: FavoriteSport" />
+        <br/>
+        <input type="button" value="Save"/>
+    </div>    
+</div>

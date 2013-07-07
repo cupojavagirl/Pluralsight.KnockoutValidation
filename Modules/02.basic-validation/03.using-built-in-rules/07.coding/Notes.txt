@@ -1,0 +1,22 @@
+1
+        public MinLengthValue: KnockoutObservable<string> = ko.observable("");
+        public MaxLengthValue: KnockoutObservable<string> = ko.observable("");
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        public SetupValidation() {
+
+        }
+
+2
+
+            this.MinLengthValue.extend({ minLength: 5 });
+            this.MaxLengthValue.extend({ maxLength: 10 });
+
+3
+
+    <span >Min Length Validation: </span><input type="text" data-bind="value: MinLengthValue"/>
+    <br/>
+    <span >Max Length Validation: </span><input type="text" data-bind="value: MaxLengthValue"/>

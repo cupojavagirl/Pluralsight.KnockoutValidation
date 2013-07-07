@@ -1,0 +1,40 @@
+
+1
+        public IfEqualValue: KnockoutObservable<string> = ko.observable("");
+        public IfNotEqualValue: KnockoutObservable<string> = ko.observable("");
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        public SetupValidation() {
+
+        }
+
+2
+            this.IfEqualValue.extend(
+                {
+                    equal: this.ControlValue
+                });
+            this.IfNotEqualValue.extend(
+                {
+                    notEqual: {
+                        params: this.ControlValue,
+                        message: "Must Not Equal the Control Value"
+                 }});
+
+3
+    <input type="text" readonly="" data-bind="value: ControlValue"/>
+    <br/>
+    <span >Equals Validation: </span><input type="text" data-bind="value: IfEqualValue"/>
+    <br/>
+    <span >!Equals Validation: </span><input type="text" data-bind="value: IfNotEqualValue"/>
+
+4
+public NonObjectValue: KnockoutObservable<string> = ko.observable("");
+
+this.NonObjectValue.extend({equal: "Red"});
+
+5
+    <br/>
+    <span >Simple Validation: </span><input type="text" data-bind="value: NonObjectValue"/>

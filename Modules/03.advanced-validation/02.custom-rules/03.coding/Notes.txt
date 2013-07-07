@@ -1,0 +1,44 @@
+1
+/// <reference path="../Scripts/typings/knockout.validation/knockout.validation.d.ts" />
+
+2
+interface KnockoutValidationRuleDefinitions{
+    isPositiveNumber: KnockoutValidationRuleDefinition
+}
+
+3
+(function () {
+
+
+    ko.validation.registerExtenders();
+})();
+
+4
+        validator: (value, mustBePositive) => {
+            if (!mustBePositive) { return true; }
+
+            return value >= 0;
+        },
+        message: "The value must be positive"
+
+5
+        public MustBePositiveValue: KnockoutObservable<number> = ko.observable(0);
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        private SetupValidation() {
+            this.MustBePositiveValue.extend(
+                {
+                    isPositiveNumber: true
+                });
+        }
+
+6
+<script src="~/ViewModels/IsPositiveNumberRule.js"></script>
+
+7
+    <div>
+        <input type="text" data-bind="value: MustBePositiveValue" />
+    </div>

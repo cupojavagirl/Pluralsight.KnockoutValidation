@@ -1,0 +1,34 @@
+1
+        public AllLowerVales: KnockoutObservable<string> = ko.observable("");
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        public SetupValidation() {
+        }
+
+2
+            this.AllLowerVales.extend({
+                pattern: {
+                    params: "^[a-z]*$",
+                    message: "All values must be lower case"
+                }
+            });
+
+3)
+    <span >All Lower Validation: </span><input type="text" data-bind="value: AllLowerVales"/>
+    <br/>
+
+4
+        public PhoneNumberValue: KnockoutObservable<string> = ko.observable("");
+
+            this.PhoneNumberValue.extend({
+                pattern: {                    
+                    params: /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/ ,
+                    message: 'Invalid phone number.'
+                }
+            });
+
+5
+    <span >Phone Validation: </span><input type="text" data-bind="value: PhoneNumberValue"/>

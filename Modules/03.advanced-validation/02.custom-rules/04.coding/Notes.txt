@@ -1,0 +1,33 @@
+
+1) setup the base vm
+        public MustBePositiveValue: KnockoutObservable<number> = ko.observable(0);
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        private SetupValidation() {
+
+        }
+
+2
+            this.MustBePositiveValue.extend(
+                {
+                    
+                });
+
+3
+                    validation: {
+                        validator: (value, mustBePositive) => {
+                            if (!mustBePositive) { return true; }
+
+                            return value >= 0;
+                        },
+                        message: "The value must be positive",
+                        params: true                    
+                    }
+
+4
+    <div>
+        <input type="text" data-bind="value: MustBePositiveValue" />
+    </div>

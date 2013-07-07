@@ -1,0 +1,36 @@
+1
+
+public FavoriteSport: KnockoutObservable<string> = ko.observable("Baseball");
+
+2
+.extend({ required: true })
+
+3
+
+    <script type="text/javascript">
+        (function() {
+            var vm = new Ksj.Validation.IndexViewModel();
+            var dom = $('#demoArea')[0];
+
+            ko.applyBindings(vm, dom);
+
+        })();
+    </script>
+4
+ko.applyBindingsWithValidation(vm, dom);
+
+5
+    <div>
+        <input type="text" data-bind="value: FavoriteSport" />
+        <br/>
+        <input type="button" value="Save"/>
+    </div>
+
+6
+        constructor() {
+            this.SetupValidation();
+        }
+
+        private SetupValidation() {
+            this.FavoriteSport.extend({required: true});
+        }

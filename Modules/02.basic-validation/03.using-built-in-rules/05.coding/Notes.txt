@@ -1,0 +1,27 @@
+1
+        public FullName: KnockoutObservable<string> = ko.observable("Derik Whittaker");
+        public Age: KnockoutObservable<number> = ko.observable(1);
+
+        constructor() {
+            this.SetupValidation();
+        }
+
+        public SetupValidation() {
+
+        }
+
+2
+            this.FullName.extend({ required: true });
+            this.Age.extend({ required: true, min: 5, max: 17 });
+
+3
+    <div>
+        <input type="text" data-bind="value: FullName" />
+        <br/>
+        <input type="text" data-bind="value: Age" />
+    </div>
+
+4
+                .extend({ required: true })
+                .extend({ min: { params: 5, message: "Must be >= 5" } })
+                .extend({ max: { params: 17, message: "Must be <= 17" } })
