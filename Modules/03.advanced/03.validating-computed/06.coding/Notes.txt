@@ -1,0 +1,41 @@
+1 - setup the observables
+        public Value1: KnockoutObservable<number> = ko.observable(0);
+        public Value2: KnockoutObservable<number> = ko.observable(0);
+        public Total: KnockoutComputed<number>;
+
+2) create the computed & the validation shell
+        constructor() {
+
+            this.Total = ko.computed(() => {
+                return this.Value1() + this.Value2();
+            });
+
+            this.SetupValidation();
+
+        }
+
+        private SetupValidation() {
+
+        }
+
+3) setup the HTML -- point out the inclusion of the span tag.
+	because computed columns typically don't have any direct input fields that are bound to them, you'll need to explicitly add a validation message label for the computed field, 
+	because one will not automatically display like a field bound to an input field would.
+        <input type="text" data-bind="value: Value1" style="width: 50px" />
+        <input type="text" data-bind="value: Value2" style="width: 50px"/>
+        <span data-bind="validationMessage: Total" class="validationMessage"></span>
+
+4 time to setup the validation rule, we are going to do this inline
+            ko.validation.rules['isPositive'] = {
+                validator: function (val, otherVal) {
+                    return val >= 0;
+                },
+                message: 'The total must be positive'
+            };
+
+            ko.validation.registerExtenders();
+
+5 time to apply the rule to the computed
+           this.Total.extend({ isPositive: { message: "Total cannot be less than 0" } });
+
+6 run the application
