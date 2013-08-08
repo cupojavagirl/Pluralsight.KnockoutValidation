@@ -1,0 +1,28 @@
+https://github.com/Knockout-Contrib/Knockout-Validation/pull/268/commits
+
+1 setup the observables -- point out no need to setup the validation manuall
+	public RequiredField: KnockoutObservable<string> = ko.observable("");
+        public RangeField: KnockoutObservable<number> = ko.observable(0);
+
+2) setup the base html
+        <input type="text" data-bind="value: RequiredField"  />
+        <span data-bind="validationMessage: RequiredField" class="validationMessage"></span>
+        <br/>
+        <input type="number" data-bind="value: RangeField"  />
+        <span data-bind="validationMessage: RangeField" class="validationMessage"></span>
+
+	point out that we are adding the validation message html because the library will not add this for us
+
+3 add the validation attributes
+	required
+	min="0" max="10"
+
+4 add the confinguratio changes
+
+
+            var options = {
+                parseInputAttributes: true
+            };
+
+            ko.applyBindingsWithValidation(vm, dom, options);
+	

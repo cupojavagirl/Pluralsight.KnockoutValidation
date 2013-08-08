@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Conditional Validation";
+    ViewBag.Title = "Validation with HTML5 Attributes";
 }
 @section featured {
     <section class="featured">
@@ -14,17 +14,28 @@
 @section scripts
 {
     <script src="~/ViewModels/IndexViewModel.js"></script>
+
     <script type="text/javascript">
         (function() {
             var vm = new Ksj.Validation.IndexViewModel();
             var dom = $('#demoArea')[0];
 
-            ko.applyBindings(vm, dom);
+            var options = {
+                parseInputAttributes: true
+            };
+
+            ko.applyBindingsWithValidation(vm, dom, options);
 
         })();
     </script>
 }
 
 <div id="demoArea">
-    
+    <div>
+        <input type="text" data-bind="value: RequiredField" required />
+        <span data-bind="validationMessage: RequiredField" class="validationMessage"></span>
+        <br/>
+        <input type="number" data-bind="value: RangeField" min="0" max="10" />
+        <span data-bind="validationMessage: RangeField" class="validationMessage"></span>
+    </div>
 </div>
