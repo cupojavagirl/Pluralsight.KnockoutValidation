@@ -1,0 +1,27 @@
+1 - setup the observables
+        public RequiresValidation: KnockoutObservable<boolean> = ko.observable(false);
+        public ValueToValidate: KnockoutObservable<number> = ko.observable(0);
+
+2) setup the shell of the validation
+        constructor() {            
+            this.SetupValidation();
+        }
+
+        private SetupValidation() {
+
+            this.ValueToValidate.extend({
+                required: {
+                    message: "Need to populate this w/ a value"
+                }
+            });
+        }
+
+3) add in the magic which allows this to be conditional
+	***** POINT OUT that if you do not speall 'onlyif' correctly w/ the correct case things do not work ***
+	onlyIf: () => { return this.RequiresValidation() === true; }
+
+3) setup the HTML 
+        <input type="checkbox" data-bind="checked: RequiresValidation"  />
+        <input type="text" data-bind="value: ValueToValidate" placeholder="Enter something here"/>
+
+6 run the application
